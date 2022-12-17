@@ -9,11 +9,11 @@ module.exports.getWlMap = async() =>{
     for(let i = 0; i < jsonWl.length;i++){
         let {Address,id} = jsonWl[i];
         Address = Address.toLowerCase();
-
+        let date = (new Date()).getTime();
         let object = {
             id:id,
-            nonce:1,
-            sig: await signWl(Address,id,1)
+            nonce:date,
+            sig: await signWl(Address,id,date)
         }
 
         if(result.has(Address)){
