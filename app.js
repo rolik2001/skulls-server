@@ -1,31 +1,38 @@
 const express = require("express");
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const {getWlMap} = require("./helpers/parseWL");
-const app = express()
+const app = express();
 const port = 80
 
-const wlMap = getWlMap();
 app.use(cors());
+app.use(express.json());
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));
 
 app.get('/', (req, res) => {
     res.sendStatus(200)
 })
 
-app.post('/is_while_list_sale', (req, res) => {
+app.post('/is_white_list_sale', async (req, res) => {
+    let wlMap = await getWlMap();
     let result = {
         whiteList: false
     }
 
     try {
-        let {address} = req.body;
-        address = address.toLowerCase();
+        let {owner} = req.body;
+        owner = owner.toLowerCase();
 
-        if (wlMap.has(address)) {
+        if (wlMap.has(owner)) {
             result.whiteList = true;
-            result = {...result, ...wlMap.get(address)}
+            result = {...result, ...wlMap.get(owner)}
         }
         res.send(JSON.stringify(result));
     } catch (e) {
+        console.log(e);
         res.send(JSON.stringify(result));
     }
 })
