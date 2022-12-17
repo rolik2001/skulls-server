@@ -1,7 +1,7 @@
 const express = require("express");
 const {getWlMap} = require("./helpers/parseWL");
 const app = express()
-const port = 3000
+const port = 80
 
 const wlMap = getWlMap()
 
