@@ -28,13 +28,6 @@ app.get('/is_while_list_sale', (req, res) => {
     }
 })
 
-// app.get("/EssenceContractInfo", (req, res) => {
-//     let object = {}
-// })
-//
-// app.get("/")
-
-
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
