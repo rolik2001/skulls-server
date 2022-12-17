@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
     res.sendStatus(200)
 })
 
-app.get('/is_while_list_sale', (req, res) => {
+app.post('/is_while_list_sale', (req, res) => {
     let result = {
         whiteList: false
     }
