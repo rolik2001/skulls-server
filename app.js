@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require('cors');
 const {getWlMap} = require("./helpers/parseWL");
 const app = express()
 const port = 80
 
-const wlMap = getWlMap()
+const wlMap = getWlMap();
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.sendStatus(200)
