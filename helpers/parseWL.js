@@ -12,7 +12,7 @@ module.exports.getWlMap = async() =>{
 
         let object = {
             id:id,
-            nonce:0,
+            nonce:1,
             sig: await signWl(Address,id,0)
         }
 
