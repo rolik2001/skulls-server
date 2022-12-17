@@ -6,8 +6,8 @@ module.exports.signWl = async (user, id, nonce) => {
     const signer = new ethers.Wallet(signerPriv);
 
     const messageHash = ethers.utils.solidityKeccak256(
-        ["address", "uint256", "uint256"],
-        [user, id, nonce]
+        ["uint256", "uint256","address"],
+        [id, nonce,user]
     )
     let messageHashBytes = ethers.utils.arrayify(messageHash)
     return await signer.signMessage(messageHashBytes);
