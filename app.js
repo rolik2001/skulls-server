@@ -32,7 +32,6 @@ app.post('/is_white_list_sale', async (req, res) => {
         }
         res.send(JSON.stringify(result));
     } catch (e) {
-        console.log(e);
         res.send(JSON.stringify(result));
     }
 })
