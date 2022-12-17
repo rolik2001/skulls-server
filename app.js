@@ -6,7 +6,7 @@ const port = 80
 const wlMap = getWlMap()
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.sendStatus(200)
 })
 
 app.get('/is_while_list_sale', (req, res) => {
