@@ -3,7 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const {getWlMap} = require("./helpers/parseWL");
 const app = express();
-const port = 8080
+const port = 80
 
 app.use(cors());
 app.use(express.json());
