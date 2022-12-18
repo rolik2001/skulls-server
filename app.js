@@ -3,7 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const {getWlMap} = require("./helpers/parseWL");
 const app = express();
-const port = 80
+const port = 8080
 
 app.use(cors());
 app.use(express.json());
@@ -12,12 +12,15 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
 
+let wlMap = new Map();
+
+
 app.get('/', (req, res) => {
     res.sendStatus(200)
 })
 
 app.post('/is_white_list_sale', async (req, res) => {
-    let wlMap = await getWlMap();
+    // let wlMap = await getWlMap();
     let result = {
         whiteList: false
     }
@@ -39,3 +42,10 @@ app.post('/is_white_list_sale', async (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
+async function init() {
+    wlMap = await getWlMap();
+}
+
+
+init();

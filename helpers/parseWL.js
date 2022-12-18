@@ -1,24 +1,25 @@
 const CSVToJSON = require('csvtojson')
 const {signWl} = require("./sign");
 
-
+const nonce = 1;
 
 module.exports.getWlMap = async() =>{
     let result = new Map();
     let jsonWl = await CSVToJSON().fromFile('files/WL.csv');
     for(let i = 0; i < jsonWl.length;i++){
-        let {Address,id} = jsonWl[i];
-        Address = Address.toLowerCase();
+        console.log("HERE");
+        let {address,id} = jsonWl[i];
+        address = address.toLowerCase();
         let object = {
             id:id,
-            nonce:1,
-            sig: await signWl(Address,id,1)
+            nonce:nonce,
+            sig: await signWl(address,id,nonce)
         }
 
-        if(result.has(Address)){
+        if(result.has(address)){
             console.log("DUPLICATED")
         }
-        result.set(Address,object);
+        result.set(address,object);
     }
 
     return result;
