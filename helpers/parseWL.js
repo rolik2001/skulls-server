@@ -7,7 +7,6 @@ module.exports.getWlMap = async() =>{
     let result = new Map();
     let jsonWl = await CSVToJSON().fromFile('files/WL.csv');
     for(let i = 0; i < jsonWl.length;i++){
-        console.log("HERE");
         let {address,id} = jsonWl[i];
         address = address.toLowerCase();
         let object = {
