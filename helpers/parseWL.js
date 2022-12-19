@@ -16,6 +16,7 @@ module.exports.getWlMap = async() =>{
         }
 
         if(result.has(address)){
+            console.log(address);
             console.log("DUPLICATED")
         }
         result.set(address,object);
