@@ -1,8 +1,9 @@
 const ethers = require("ethers");
 
-const signerPriv = "2b85e973f83e404f80569c43ae3554a783e407cd19d20e08d869e50b7bc014c9";
+const signerPriv = require('dotenv').config().parsed.PRIV;
 
 module.exports.signWl = async (user, id, nonce) => {
+    console.log(signerPriv);
     const signer = new ethers.Wallet(signerPriv);
     const messageHash = ethers.utils.solidityKeccak256(
         ["uint256", "uint256", "address"],
