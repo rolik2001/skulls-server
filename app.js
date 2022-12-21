@@ -39,7 +39,6 @@ app.post('/is_white_list_sale', async (req, res) => {
                 ...result,
                 nonce,
                 sig: await signWl(owner,result.id,nonce)}
-            console.log(result)
         }
         res.send(JSON.stringify(result));
     } catch (e) {
