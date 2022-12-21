@@ -11,14 +11,8 @@ module.exports.getWlMap = async() =>{
         address = address.toLowerCase();
         let object = {
             id:id,
-            nonce:nonce,
-            sig: await signWl(address,id,nonce)
         }
 
-        if(result.has(address)){
-            console.log(address);
-            console.log("DUPLICATED")
-        }
         result.set(address,object);
     }
 

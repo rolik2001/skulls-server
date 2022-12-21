@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const {getWlMap} = require("./helpers/parseWL");
+const {getNonce} = require("./helpers/getNonce");
+const {signWl} = require("./helpers/sign");
 const app = express();
 const port = 80
 
@@ -32,6 +34,12 @@ app.post('/is_white_list_sale', async (req, res) => {
         if (wlMap.has(owner)) {
             result.whiteList = true;
             result = {...result, ...wlMap.get(owner)}
+            let nonce = await getNonce(owner);
+            result = {
+                ...result,
+                nonce,
+                sig: await signWl(owner,result.id,nonce)}
+            console.log(result)
         }
         res.send(JSON.stringify(result));
     } catch (e) {
