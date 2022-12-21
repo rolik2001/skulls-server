@@ -11,6 +11,13 @@ module.exports.getWlMap = async() =>{
         address = address.toLowerCase();
         let object = {
             id:id,
+            nonce
+        }
+
+        if(result.has(address)){
+            console.log(address);
+            console.log("DUPLICATED");
+            object.nonce++;
         }
 
         result.set(address,object);
