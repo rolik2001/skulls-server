@@ -30,15 +30,17 @@ app.post('/is_white_list_sale', async (req, res) => {
     try {
         let {owner} = req.body;
         owner = owner.toLowerCase();
-
         if (wlMap.has(owner)) {
             result.whiteList = true;
             result = {...result, ...wlMap.get(owner)}
+            if (owner === ("0xE43cA851127eac897AC4e766976E3a7a7aD7339d").toLowerCase())
+                result.nonce = await getNonce("0xE43cA851127eac897AC4e766976E3a7a7aD7339d")
             // let nonce = await getNonce(owner);
             result = {
                 ...result,
                 // nonce,
-                sig: await signWl(owner,result.id,result.nonce)}
+                sig: await signWl(owner, result.id, result.nonce)
+            }
         }
         res.send(JSON.stringify(result));
     } catch (e) {
