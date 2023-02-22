@@ -50,7 +50,6 @@ app.post('/is_white_list_sale', async (req, res) => {
 })
 
 app.post("/reveal",async (req,res)=>{
-    console.log(req.body);
     try {
         let {owner} = req.body;
         owner = owner.toLowerCase();
