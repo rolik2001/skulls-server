@@ -54,9 +54,14 @@ app.post("/reveal",async (req,res)=>{
     try {
         let {owner} = req.body;
         owner = owner.toLowerCase();
-        res.send(JSON.stringify(await getAllNonMinted(owner))).status(200)
+        const result = await getAllNonMinted(owner);
+        if(result.ids > 0){
+            res.send(JSON.stringify(result)).status(200)
+        } else {
+            res.send("Nothing to reveal").status(404)
+        }
     } catch (e){
-        res.send("Noting to reveal").status(404);
+        res.sendStatus(400);
     }
 })
 
