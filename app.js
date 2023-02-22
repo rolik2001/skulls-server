@@ -6,7 +6,7 @@ const {getNonce} = require("./helpers/getNonce");
 const {signWl} = require("./helpers/sign");
 const {getAllNonMinted} = require("./helpers/reveal");
 const app = express();
-const port = 2020
+const port = 80
 
 app.use(cors());
 app.use(express.json());
