@@ -4,8 +4,9 @@ const bodyParser = require('body-parser');
 const {getWlMap} = require("./helpers/parseWL");
 const {getNonce} = require("./helpers/getNonce");
 const {signWl} = require("./helpers/sign");
+const {getAllNonMinted} = require("./helpers/reveal");
 const app = express();
-const port = 80
+const port = 2020
 
 app.use(cors());
 app.use(express.json());
@@ -48,13 +49,24 @@ app.post('/is_white_list_sale', async (req, res) => {
     }
 })
 
+app.post("/reveal",async (req,res)=>{
+    console.log(req.body);
+    try {
+        let {owner} = req.body;
+        owner = owner.toLowerCase();
+        res.send(JSON.stringify(await getAllNonMinted(owner))).status(200)
+    } catch (e){
+        res.send("Noting to reveal").status(404);
+    }
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
 
-async function init() {
-    wlMap = await getWlMap();
-}
-
-
-init();
+// async function init() {
+//     wlMap = await getWlMap();
+// // }
+//
+//
+// init();
