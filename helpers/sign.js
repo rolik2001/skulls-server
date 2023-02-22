@@ -20,7 +20,7 @@ module.exports.signMystery = async(ids,amounts,nonce,owner) => {
     let domain = {
         name: "MysteryCardsManager",
         version: "1.0",
-        chainId: "5",
+        chainId: "1",
         verifyingContract: MysteryCards,
     }
 
