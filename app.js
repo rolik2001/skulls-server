@@ -55,7 +55,7 @@ app.post("/reveal",async (req,res)=>{
         let {owner} = req.body;
         owner = owner.toLowerCase();
         const result = await getAllNonMinted(owner);
-        if(result.ids > 0){
+        if(result.ids.length > 0){
             res.send(JSON.stringify(result)).status(200)
         } else {
             res.send("Nothing to reveal").status(404)
